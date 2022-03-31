@@ -1,0 +1,8 @@
+.row-margin {
+  margin-top: 2.5rem;
+}
+
+.row-container {
+  margin: auto;
+  max-width: 750px;
+}
