@@ -1,39 +1,93 @@
 import { schools } from "../../../../constants/schools-info";
 import styles from './NodeForm.module.css';
+import ContractsContext from "../../../../store/contract-context";
+import { useContext, useRef } from 'react';
+import UserContext from "../../../../store/user-context";
+import Router from 'next/router';
 
 export default function AddNodeFormPage() {
-  return (
-    <div>
-      <div className={`container ${styles["container-form"]}`}>
-        <div className="card">
-          <div className="card-body">
-            <h6 className="text-muted card-subtitle mb-2">Complete the following form</h6>
 
-            <form method="POST" action="/api/add/node/permissions">
-              <label htmlFor="wallet">Node Wallet</label>
-              <input className="form-control" type="text" name="wallet" id="wallet"/>
+    const contractsCtx = useContext(ContractsContext);
+    const userCtx = useContext(UserContext);
 
-              <label htmlFor="schools">School</label>
-              <select className="form-control" id="schools" name="school">
-                {schools.map((school) => {
-                  return <option value={school}>{school}</option>;
-                })}
-              </select>
+    const walletInput = useRef();
+    const schoolInput = useRef();
+    const isMasterInput = useRef();
 
-              <label htmlFor="master">Master Node</label>
-              <select className="form-control" id="master" name="master">
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-              </select>
+    function submitHandler(e) {
+        e.preventDefault();
 
-              <div className={styles["btn-container"]}>
-                <button className={`btn btn-primary ${styles["btn-space"]}`} type="submit">Save</button>
-              </div>
+        const wallet = walletInput.current.value;
+        const school = schoolInput.current.value;
+        const isMaster = isMasterInput.current.value == 'Yes' ? true : false;
 
-            </form>
-          </div>
+        const validationEndPoint = '/api/form/node/validation';
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ wallet: wallet, school: school, isMaster: isMaster })
+        };
+
+        fetch(validationEndPoint, options)
+        .then(response => response.text())
+        .then(data => {
+            let resData = JSON.parse(data);
+            if (resData.error) {
+                // toastr message error
+            }
+            else {
+                contractsCtx.contracts["Grades"]
+                .addNetworkNode(
+                    wallet,
+                    school,
+                    isMaster
+                )
+                .then(() => {
+                    // toastr message success
+                })
+                .catch(err => {
+                    // toastr message err.toString()
+                })
+            }
+
+        })
+        .then(() => Router.push('/form/add/node'));
+    }
+
+    return (
+        <div>
+            <div className={`container ${styles["container-form"]}`}>
+                <div className="card">
+                    <div className="card-body">
+                        <h6 className="text-muted card-subtitle mb-2">Complete the following form</h6>
+
+                        <form onSubmit={submitHandler}>
+                            <label htmlFor="wallet">Node Wallet</label>
+                            <input className="form-control" type="text" name="wallet" id="wallet" ref={walletInput} />
+
+                            <label htmlFor="schools">School</label>
+                            <select className="form-control" id="schools" name="school" ref={schoolInput}>
+                                {schools.map((school) => {
+                                    return <option key={school} value={school}>{school}</option>;
+                                })}
+                            </select>
+
+                            <label htmlFor="master">Master Node</label>
+                            <select className="form-control" id="master" name="master" ref={isMasterInput}>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+
+
+                            <div className={styles["btn-container"]}>
+                                <button className={`btn btn-primary ${styles["btn-space"]}`}>Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
