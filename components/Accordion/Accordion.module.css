@@ -1,0 +1,37 @@
+.accordion {
+    background-color: rgba(107, 141, 228, 0.24);
+    cursor: pointer;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 16px;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.active, .accordion:hover {
+    background-color: rgba(107, 141, 228, 0.42);
+}
+
+.accordion-title,
+.accordion-content {
+    padding: 0 18px;
+    overflow: hidden;
+    background-color: rgba(107, 141, 228, 0.08);
+}
+
+.accordion:after {
+    font-size: 10px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+}
+
+.validate-btn {
+    border-radius: 12px;
+}
