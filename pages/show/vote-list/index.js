@@ -5,7 +5,7 @@ import styles from './VoteList.module.css';
 import { faBan, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import WithAuth from "../../../components/WithAuth/WithAuth";
-import { Router } from "next/router";
+import Router from "next/router";
 import toast from "react-hot-toast";
 
 function ShowVoteListPage() {

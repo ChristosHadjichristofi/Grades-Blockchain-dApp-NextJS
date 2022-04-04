@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from "react";
 import ContractsContext from "../../../store/contract-context";
 import styles from './Participants.module.css';
 import WithAuth from "../../../components/WithAuth/WithAuth";
-import { Router } from "next/router";
+import Router from "next/router";
 import toast from "react-hot-toast";
 
 function ShowParticipantsPage() {
