@@ -4,8 +4,9 @@ import ContractsContext from "../../../store/contract-context";
 import styles from './VoteList.module.css';
 import { faBan, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import WithAuth from "../../../components/WithAuth/WithAuth";
 
-export default function ShowVoteListPage() {
+function ShowVoteListPage() {
 
     const contractsCtx = useContext(ContractsContext);
     const [loading, setLoading] = useState(true);
@@ -105,3 +106,5 @@ export default function ShowVoteListPage() {
         </div>
     );
 }
+
+export default WithAuth(ShowVoteListPage);

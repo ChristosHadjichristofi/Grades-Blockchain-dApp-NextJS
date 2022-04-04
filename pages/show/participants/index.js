@@ -1,8 +1,9 @@
 import { useEffect, useContext, useState } from "react";
 import ContractsContext from "../../../store/contract-context";
 import styles from './Participants.module.css';
+import WithAuth from "../../../components/WithAuth/WithAuth";
 
-export default function ShowParticipantsPage() {
+function ShowParticipantsPage() {
 
     const contractsCtx = useContext(ContractsContext);
     const [loading, setLoading] = useState(true);
@@ -72,3 +73,5 @@ export default function ShowParticipantsPage() {
         </div>
     );
 }
+
+export default WithAuth(ShowParticipantsPage);

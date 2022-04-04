@@ -2,13 +2,12 @@ import { schools } from "../../../../constants/schools-info";
 import styles from './NodeForm.module.css';
 import ContractsContext from "../../../../store/contract-context";
 import { useContext, useRef } from 'react';
-import UserContext from "../../../../store/user-context";
 import Router from 'next/router';
+import WithAuth from "../../../../components/WithAuth/WithAuth";
 
-export default function AddNodeFormPage() {
+function AddNodeFormPage() {
 
     const contractsCtx = useContext(ContractsContext);
-    const userCtx = useContext(UserContext);
 
     const walletInput = useRef();
     const schoolInput = useRef();
@@ -91,3 +90,5 @@ export default function AddNodeFormPage() {
         </div>
     );
 }
+
+export default WithAuth(AddNodeFormPage);

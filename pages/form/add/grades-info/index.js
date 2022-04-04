@@ -6,8 +6,9 @@ import FileImport from "../../../../components/FileInputReader/FileInputReader";
 import crypto from 'crypto';
 import ContractsContext from '../../../../store/contract-context';
 import Router from 'next/router';
+import WithAuth from "../../../../components/WithAuth/WithAuth";
 
-export default function AddGradeDetailsFormPage() {
+function AddGradeDetailsFormPage() {
 
     const userCtx = useContext(UserContext);
     const contractsCtx = useContext(ContractsContext);
@@ -156,3 +157,5 @@ export default function AddGradeDetailsFormPage() {
         </div>
     );
 }
+
+export default WithAuth(AddGradeDetailsFormPage);

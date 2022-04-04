@@ -3,8 +3,9 @@ import styles from './Courses.module.css';
 import { useContext, useState, useEffect } from 'react';
 import UserContext from "../../../store/user-context";
 import Link from 'next/link';
+import WithAuth from "../../../components/WithAuth/WithAuth";
 
-export default function ShowCourses() {
+function ShowCourses() {
 
     const userCtx = useContext(UserContext);
 
@@ -66,3 +67,5 @@ export default function ShowCourses() {
         </div>
     );
 }
+
+export default WithAuth(ShowCourses);
