@@ -22,12 +22,12 @@ function App({ Component, pageProps }) {
 
     return (
     <div id="general-container">
-        <Navbar />
         <Toaster/>
 
         <UserContextProvider>
             <ContractsContextProvider>
                 <Web3ReactProvider getLibrary={getLibrary}>
+                    <Navbar />
                     <Component {...pageProps} />
                 </Web3ReactProvider>
             </ContractsContextProvider>
