@@ -46,7 +46,7 @@ function MenuPage() {
                 <div className={`row ${styles["row-margin"]}`}>
                     <Card
                         title="Form Completion"
-                        details="Add new Grades Information for a specific course to the Blockchain"
+                        details="Add grades information for a specific school's course of an exam period to the Blockchain"
                         route="/form/add/grades-info"
                     />
                     <Card
