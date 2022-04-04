@@ -4,6 +4,7 @@ import ContractsContext from "../../../../store/contract-context";
 import { useContext, useRef } from 'react';
 import Router from 'next/router';
 import WithAuth from "../../../../components/WithAuth/WithAuth";
+import toast from "react-hot-toast";
 
 function AddNodeFormPage() {
 
@@ -33,9 +34,7 @@ function AddNodeFormPage() {
         .then(response => response.text())
         .then(data => {
             let resData = JSON.parse(data);
-            if (resData.error) {
-                // toastr message error
-            }
+            if (resData.error) toast.error(resData.msg);
             else {
                 contractsCtx.contracts["Grades"]
                 .addNetworkNode(
@@ -43,12 +42,8 @@ function AddNodeFormPage() {
                     school,
                     isMaster
                 )
-                .then(() => {
-                    // toastr message success
-                })
-                .catch(err => {
-                    // toastr message err.toString()
-                })
+                .then(() => toast.success('User with Wallet: ' + wallet + " was added successfully to the vote list!"))
+                .catch(err => toast.error(err.toString()))
             }
 
         })

@@ -5,6 +5,8 @@ import styles from './VoteList.module.css';
 import { faBan, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import WithAuth from "../../../components/WithAuth/WithAuth";
+import { Router } from "next/router";
+import toast from "react-hot-toast";
 
 function ShowVoteListPage() {
 
@@ -19,12 +21,12 @@ function ShowVoteListPage() {
         contractsCtx.contracts["Grades"]
         .voteAdd(address, vote)
         .then(result => {
-            // req.flash('messages', { type: 'success', value: 'Your vote for user with Wallet ' + address + ' has been submitted.'})
-            // res.redirect('/show/vote-list');
+            Router.push('/show/vote-list');
+            toast.success('Your vote for user with Wallet ' + address + ' has been submitted.');
         })
         .catch(err => {
-            // req.flash('messages', { type: 'error', value: err.toString() })
-            // res.redirect('/show/vote-list');
+            Router.push('/show/vote-list');
+            toast.error(err.toString());
         })
     }
 
@@ -37,8 +39,8 @@ function ShowVoteListPage() {
             .then(voteListRetrieved => {
                 console.log(voteListRetrieved)
                 if (voteListRetrieved.length == 0) {
-                    // req.flash('messages', { type: 'error', value: "No information found!" })
-                    // return res.redirect('/menu');
+                    Router.replace("/menu");
+                    toast("No information found!");
                 }
 
                 for (const l of voteListRetrieved) {
@@ -51,8 +53,8 @@ function ShowVoteListPage() {
                 setVoteList(voteList);
             })
             .catch(err => {
-                // req.flash('messages', { type: 'error', value: err.toString() })
-                // res.redirect('/menu');
+                Router.replace("/menu");
+                toast.error(err.toString());
             })
         }
 

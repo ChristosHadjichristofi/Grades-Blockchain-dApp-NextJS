@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import DiffModal from '../DiffModal/DiffModal';
 import styles from "./Accordion.module.css";
 
@@ -33,23 +34,24 @@ const Accordion = ({ title, content, courseInfo }) => {
             )
         };
 
-        fetch(diffCreateEndpoint, options)
+        const diffCheck = fetch(diffCreateEndpoint, options)
         .then(response => response.text())
         .then(data => {
             let resData = JSON.parse(data);
             
-            if (!resData.error) {
-                console.log('all good')
-                // toastr message error
-            }
+            if (!resData.error) toast.success("The file located at the URL has not been changed!");
             else {
-                // must redirect to diff page and show diff
                 setDiff(resData.diff);
                 setShow(true);
                 setModalTitle(`${course} ${belongs} ${school}`);
             }
+        })
 
-        })        
+        toast.promise(diffCheck, {
+            loading: 'Checking for diffs...',
+            success: "Successfully checked for diffs!",
+            error:   "Something went wrong!"
+        })
     }
 
     return (

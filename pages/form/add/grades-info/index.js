@@ -7,6 +7,7 @@ import crypto from 'crypto';
 import ContractsContext from '../../../../store/contract-context';
 import Router from 'next/router';
 import WithAuth from "../../../../components/WithAuth/WithAuth";
+import toast from 'react-hot-toast';
 
 function AddGradeDetailsFormPage() {
 
@@ -60,9 +61,7 @@ function AddGradeDetailsFormPage() {
         .then(response => response.text())
         .then(data => {
             let resData = JSON.parse(data);
-            if (resData.error) {
-                // toastr message error
-            }
+            if (resData.error) toast.error(resData.msg);
             else {
                 contractsCtx.contracts["Grades"]
                 .addRecord(
@@ -70,12 +69,8 @@ function AddGradeDetailsFormPage() {
                     JSON.stringify(gradeInfo),
                     courseInput.current.value
                 )
-                .then(() => {
-                    // toastr message success
-                })
-                .catch(err => {
-                    // toastr message err.toString()
-                })
+                .then(() => toast.success("The content of the form was submitted successfully!"))
+                .catch(err => toast.error(err.toString()))
             }
 
         })

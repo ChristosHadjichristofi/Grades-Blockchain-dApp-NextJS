@@ -2,6 +2,8 @@ import { useEffect, useContext, useState } from "react";
 import ContractsContext from "../../../store/contract-context";
 import styles from './Participants.module.css';
 import WithAuth from "../../../components/WithAuth/WithAuth";
+import { Router } from "next/router";
+import toast from "react-hot-toast";
 
 function ShowParticipantsPage() {
 
@@ -18,8 +20,8 @@ function ShowParticipantsPage() {
             .then(participantsRetrieved => {
 
                 if (participantsRetrieved.length == 0) {
-                    // req.flash('messages', { type: 'error', value: "No information found!" })
-                    // return res.redirect('/menu');
+                    Router.replace("/menu");
+                    toast("No information found!");
                 }
 
                 for (const p of participantsRetrieved) {
@@ -28,8 +30,8 @@ function ShowParticipantsPage() {
                 setParticipants(participants);
             })
             .catch(err => {
-                // req.flash('messages', { type: 'error', value: err.toString() })
-                // res.redirect('/menu');
+                Router.replace("/menu");
+                toast.error(err.toString());
             })
         }
 
