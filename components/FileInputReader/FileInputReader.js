@@ -4,8 +4,6 @@ const FileImport = ({ setFileContent }) => {
     const handleFileRead = (e) => {
         const content = fileReader.result;
         setFileContent(content);
-        // console.log(content)
-        // … do something with the 'content' …
     };
 
     const handleFileChosen = (file) => {

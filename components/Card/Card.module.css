@@ -1,11 +1,11 @@
 .card-center {
-  text-align: center;
+    text-align: center;
 }
 
 .card-container-layout {
-  min-height: 250px;
-  border-radius: 32px;
-  max-width: 280px;
-  margin: auto;
-  background-color: rgba(107, 141, 228, 0.23);
+    min-height: 250px;
+    border-radius: 32px;
+    max-width: 280px;
+    margin: auto;
+    background-color: rgba(107, 141, 228, 0.23);
 }

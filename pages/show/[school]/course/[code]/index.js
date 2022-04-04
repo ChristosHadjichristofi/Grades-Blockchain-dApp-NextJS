@@ -4,6 +4,7 @@ import Accordion from "../../../../../components/Accordion/Accordion";
 import styles from './CourseByID.module.css';
 import Router from "next/router";
 import WithAuth from "../../../../../components/WithAuth/WithAuth";
+import toast from "react-hot-toast";
 const moment = require('moment');
 
 function ShowCourseDetails({ courseInfo, setCourseInfo }) {
@@ -23,8 +24,8 @@ function ShowCourseDetails({ courseInfo, setCourseInfo }) {
             .then(JSON_StringArr => {
 
                 if (JSON_StringArr.length == 0) {
-                    // req.flash('messages', { type: 'error', value: "No information found!" })
-                    // return res.redirect('/courses');
+                    toast.error("No information found!");
+                    Router.replace('/courses');
                 }
 
                 for (const stringified of JSON_StringArr) {
@@ -39,8 +40,8 @@ function ShowCourseDetails({ courseInfo, setCourseInfo }) {
                 setCoursesData(retrievedCourseData);
             })
             .catch(err => {
-                // req.flash('messages', { type: 'error', value: err.data.message })
-                // res.redirect('/courses');
+                toast.error(err.data.message);
+                Router.replace('/courses');
             })
         }
 
