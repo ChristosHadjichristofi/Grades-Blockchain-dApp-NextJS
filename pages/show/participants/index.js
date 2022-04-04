@@ -31,7 +31,7 @@ function ShowParticipantsPage() {
             })
             .catch(err => {
                 Router.replace("/menu");
-                toast.error(err.toString());
+                toast.error(err.data.message);
             })
         }
 

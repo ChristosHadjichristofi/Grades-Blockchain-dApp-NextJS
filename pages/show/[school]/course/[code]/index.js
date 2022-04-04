@@ -39,7 +39,7 @@ function ShowCourseDetails({ courseInfo, setCourseInfo }) {
                 setCoursesData(retrievedCourseData);
             })
             .catch(err => {
-                // req.flash('messages', { type: 'error', value: err.toString() })
+                // req.flash('messages', { type: 'error', value: err.data.message })
                 // res.redirect('/courses');
             })
         }

@@ -26,7 +26,7 @@ function ShowVoteListPage() {
         })
         .catch(err => {
             Router.push('/show/vote-list');
-            toast.error(err.toString());
+            toast.error(err.data.message);
         })
     }
 
@@ -54,7 +54,7 @@ function ShowVoteListPage() {
             })
             .catch(err => {
                 Router.replace("/menu");
-                toast.error(err.toString());
+                toast.error(err.data.message);
             })
         }
 

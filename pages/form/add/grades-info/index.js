@@ -70,7 +70,7 @@ function AddGradeDetailsFormPage() {
                     courseInput.current.value
                 )
                 .then(() => toast.success("The content of the form was submitted successfully!"))
-                .catch(err => toast.error(err.toString()))
+                .catch(err => toast.error(err.data.message))
             }
 
         })

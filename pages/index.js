@@ -24,7 +24,7 @@ export default function HomePage() {
                 toast.success('Authentication successful!');
                 Router.push('/menu');
             } catch (e) {
-                toast.error(e.toString());
+                toast.error("Something went wrong!");
             }
         }
     }
