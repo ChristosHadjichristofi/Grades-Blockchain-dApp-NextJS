@@ -1,9 +1,14 @@
 const Diff = require('diff');
 const Diff2html = require('diff2html');
 const fs = require('fs');
+const fs_extra = require('fs-extra');
 
 export default async function handler(req, res) {
     const { grades_asset_url, grades_asset_content_base64 } = req.body;
+
+    // Make sure that downloads folder exists
+    const downloadsDir = 'public/downloads/';
+    fs_extra.ensureDirSync(downloadsDir);
 
     const response = await fetch(grades_asset_url, { mode: 'no-cors' });
     const data = await response.text();
