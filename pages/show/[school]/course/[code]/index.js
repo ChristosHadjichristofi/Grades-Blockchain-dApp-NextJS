@@ -6,7 +6,7 @@ import Router from "next/router";
 import Link from 'next/link';
 const moment = require('moment');
 
-export default function ShowCourseDetails({ setCourseInfo }) {
+export default function ShowCourseDetails({ courseInfo, setCourseInfo }) {
 
     const { school, code } = Router.query;
     const contractsCtx = useContext(ContractsContext);
@@ -57,12 +57,7 @@ export default function ShowCourseDetails({ setCourseInfo }) {
                     .map(([key, value]) => {
                         return (
                             <div key={key}>
-                                {/* <Link href={{
-                                    pathname: '/show/[school]/course/[code]'
-                                }}> */}
-                                    
-                                {/* </Link> */}
-                                <Accordion title={key}  setCourseInfo={setCourseInfo(JSON.stringify(value[value.length - 1]))} content={
+                                <Accordion title={key}  courseInfo={JSON.stringify(value[value.length - 1])} content={
                                     <div className="table-responsive">
                                         <table className="table">
                                             <thead>
