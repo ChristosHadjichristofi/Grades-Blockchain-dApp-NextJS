@@ -7,7 +7,7 @@ import WithAuth from "../../../../../components/WithAuth/WithAuth";
 import toast from "react-hot-toast";
 const moment = require('moment');
 
-function ShowCourseDetails({ courseInfo, setCourseInfo }) {
+function ShowCourseDetails() {
 
     const { school, code } = Router.query;
     const contractsCtx = useContext(ContractsContext);
