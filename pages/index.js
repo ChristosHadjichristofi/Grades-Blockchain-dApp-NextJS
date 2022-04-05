@@ -21,7 +21,6 @@ export default function HomePage() {
             try {
                 await activate(injected);
                 setHasMetamask(true);
-                toast.success('Authentication successful!');
                 Router.push('/menu');
             } catch (e) {
                 toast.error("Something went wrong!");
