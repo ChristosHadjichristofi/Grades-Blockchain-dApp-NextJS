@@ -57,7 +57,7 @@ function ShowCourseDetails({ courseInfo, setCourseInfo }) {
             {Object.entries(coursesData)
                 .map(([key, value]) => {
                     return (
-                        <div key={key}>
+                        <div key={key} style={{ marginTop: 1 + 'rem' }}>
                             <Accordion title={key}  courseInfo={JSON.stringify(value[value.length - 1])} content={
                                 <div className="table-responsive">
                                     <table className="table">
@@ -65,6 +65,7 @@ function ShowCourseDetails({ courseInfo, setCourseInfo }) {
                                             <tr>
                                                 <th># Participants</th>
                                                 <th># Participants Passed</th>
+                                                <th>Professor</th>
                                                 {/* <th>Grades Asset URL</th> */}
                                                 {/* <th>Grades Asset Hash</th> */}
                                                 <th>Status</th>
@@ -77,6 +78,7 @@ function ShowCourseDetails({ courseInfo, setCourseInfo }) {
                                             <tr key={idx}>
                                                 <td>{course.participants_number}</td>
                                                 <td>{course.pass_number}</td>
+                                                <td>{course.professor}</td>
                                                 {/* <td>{course.grades_asset_url}</td> */}
                                                 {/* <td>{course.grades_asset_hash}</td> */}
                                                 <td>{course.update_status}</td>
