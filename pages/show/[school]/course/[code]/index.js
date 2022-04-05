@@ -25,7 +25,7 @@ function ShowCourseDetails() {
 
                 if (JSON_StringArr.length == 0) {
                     toast.error("No information found!");
-                    Router.replace('/courses');
+                    Router.replace('/show/courses');
                 }
 
                 for (const stringified of JSON_StringArr) {
@@ -41,7 +41,7 @@ function ShowCourseDetails() {
             })
             .catch(err => {
                 toast.error(err.data.message);
-                Router.replace('/courses');
+                Router.replace('/show/courses');
             })
         }
 
