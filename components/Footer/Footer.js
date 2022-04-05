@@ -20,7 +20,7 @@ const Footer = () => {
                 </li>
                 <li className="list-inline-item">
                     <a href="https://github.com/ChristosHadjichristofi/Grades-Blockchain-App-NextJS">
-                        <FontAwesomeIcon icon={ faGithub }/>&nbsp;Github
+                        <FontAwesomeIcon icon={ faGithub }/>&nbsp;Project on Github
                     </a>
                 </li>
             </ul>
