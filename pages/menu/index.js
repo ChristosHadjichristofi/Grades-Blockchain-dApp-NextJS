@@ -7,6 +7,7 @@ import { ethers } from "ethers";
 import ContractsContext from "../../store/contract-context";
 import UserContext from "../../store/user-context";
 import WithAuth from "../../components/WithAuth/WithAuth";
+import toast from "react-hot-toast";
 
 function MenuPage() {
 
@@ -19,24 +20,21 @@ function MenuPage() {
     } = useWeb3React();
 
     useEffect(() => {
-        async function a() {
+        async function setCtxs() {
             const signer = provider.getSigner();
             const contractAddress = "0x0856bEf990C4e35BDa7f8f72561bAc5112916a48";
             const contract = new ethers.Contract(contractAddress, abi, signer);
 
             contractsCtx.addContract("Grades", contract);
-            try {
-                contract.retrieveNodePermissions(account)
-                .then(u => {
-                    setUser(u);
-                    userCtx.addUser(u);
-                })
-            } catch (e) {
-                console.log(e);
-            }
+            contract.retrieveNodePermissions(account)
+            .then(u => {
+                setUser(u);
+                userCtx.addUser(u);
+            })
+            .catch((err) => toast.error(err.data.message));
         }
         
-        a();
+        setCtxs();
     }, []);
 
     return (
