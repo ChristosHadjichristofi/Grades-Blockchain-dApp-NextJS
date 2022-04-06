@@ -1,4 +1,4 @@
-# Grades-Blockchain-App
+# Grades-Blockchain-dApp-NextJS
 A dApp that manages Grades of a University through a private Ethereum network. This implementation is more product like which uses MetaMask to connect and then to interract with the smart contracts
 
 ## Technologies Used
@@ -23,6 +23,8 @@ A dApp that manages Grades of a University through a private Ethereum network. T
 * addNetworkNode: Starts a vote so as a new wallet can participate in the network and interract with the contracts
 * voteAdd: Vote for or against a candidate
 * voteList: Retrieve all ongoing votes that you didn't vote
+
+**The smart contract can be found [here](https://github.com/ChristosHadjichristofi/Grades-Blockchain-dApp/tree/main/contracts).**
 
 ## Save Grades Information
 A form is filled, which has the following fields:
