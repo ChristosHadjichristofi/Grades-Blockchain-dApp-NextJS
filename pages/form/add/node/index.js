@@ -42,7 +42,11 @@ function AddNodeFormPage() {
                     school,
                     isMaster
                 )
-                .then(() => toast.success('User with Wallet: ' + wallet + " was added successfully to the vote list!"))
+                .then(() => toast.success('User with Wallet:\n' + wallet + "\nwas added successfully to the vote list!", {
+                    style: {
+                        maxWidth: 500
+                    }
+                }))
                 .catch(err => toast.error(err.data.message))
             }
 

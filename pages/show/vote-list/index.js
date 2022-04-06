@@ -22,7 +22,11 @@ function ShowVoteListPage() {
         .voteAdd(address, vote)
         .then(result => {
             Router.push('/show/vote-list');
-            toast.success('Your vote for user with Wallet ' + address + ' has been submitted.');
+            toast.success('Your vote for user with Wallet:\n' + address + '\nhas been submitted.', {
+                style: {
+                    maxWidth: 500
+                }
+            });
         })
         .catch(err => {
             Router.push('/show/vote-list');
