@@ -3,11 +3,14 @@ import styles from "./Menu.module.css";
 import { useWeb3React } from "@web3-react/core";
 import { useContext, useState, useEffect } from 'react';
 import { abi } from "../../constants/abi";
+import { contracts } from "../../constants/contracts-addresses";
 import { ethers } from "ethers";
 import ContractsContext from "../../store/contract-context";
 import UserContext from "../../store/user-context";
 import WithAuth from "../../components/WithAuth/WithAuth";
 import toast from "react-hot-toast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWarning } from "@fortawesome/free-solid-svg-icons";
 
 function MenuPage() {
 
@@ -22,7 +25,7 @@ function MenuPage() {
     useEffect(() => {
         async function setCtxs() {
             const signer = provider.getSigner();
-            const contractAddress = "0x0856bEf990C4e35BDa7f8f72561bAc5112916a48";
+            const contractAddress = contracts["Grades"];
             const contract = new ethers.Contract(contractAddress, abi, signer);
 
             contractsCtx.addContract("Grades", contract);
@@ -59,7 +62,19 @@ function MenuPage() {
                     />
                 </div>
             </div>
-        ) : null}
+        ) : (
+            <div className={`container col-md-2`}>
+                <div className={`row ${styles["row-margin"]}`}>
+                    <div className="card" style={{"textAlign": "center", display: "flex", justifyContent: "space-around"}}>
+                        <h4><FontAwesomeIcon icon={ faWarning } className={styles.warning}/> Invalid Access</h4>
+                        <hr/>
+                        <div className="card-body" >
+                            You have to be voted to participate and perform actions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )}
 
         {user.isMaster && user.hasAccess ? (
             <div className={`container ${styles["row-container"]}`}>
