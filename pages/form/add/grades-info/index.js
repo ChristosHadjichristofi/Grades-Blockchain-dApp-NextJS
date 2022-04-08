@@ -8,6 +8,7 @@ import ContractsContext from '../../../../store/contract-context';
 import Router from 'next/router';
 import WithAuth from "../../../../components/WithAuth/WithAuth";
 import toast from 'react-hot-toast';
+import Head from 'next/head';
 
 function AddGradeDetailsFormPage() {
 
@@ -82,74 +83,81 @@ function AddGradeDetailsFormPage() {
     }
 
     return (
-        <div className={`container ${styles["container-form"]}`}>
-            <div className="card">
-                <div className="card-body">
-                    <h6 className="text-muted card-subtitle mb-2">Complete the following form</h6>
-                    <form encType="multipart/form-data" onSubmit={submitHandler}>
-                        <label htmlFor="schools">School</label>
-                        {(userCtx.user.isMaster) ?
-                            <select className="form-control" id="schools" name="school" onChange={optionChanged} ref={schoolInput}>
-                                {schools.map((school) => {
-                                    return <option key={school} value={school}>{school}</option>;
+        <>
+            <Head>
+                <title>Add Grades Info Page</title>
+                <meta property="og:title" key="title" />
+            </Head>
+
+            <div className={`container ${styles["container-form"]}`}>
+                <div className={`card ${styles.shadow}`}>
+                    <div className="card-body">
+                        <h6 className="text-muted card-subtitle mb-2">Complete the following form</h6>
+                        <form encType="multipart/form-data" onSubmit={submitHandler}>
+                            <label htmlFor="schools">School</label>
+                            {(userCtx.user.isMaster) ?
+                                <select className="form-control" id="schools" name="school" onChange={optionChanged} ref={schoolInput}>
+                                    {schools.map((school) => {
+                                        return <option key={school} value={school}>{school}</option>;
+                                    })}
+                                </select>
+                                :
+                                <select className="form-control" id="schools" name="school" ref={schoolInput}>
+                                    <option value={userCtx.user.school}>{userCtx.user.school}</option>
+                                </select>
+                            }
+
+                            <label htmlFor="period">Period</label>
+                            <select className="form-control" id="period" name="period" ref={periodInput}>
+                                <option value="WINTER">WINTER</option>
+                                <option value="SUMMER">SUMMER</option>
+                                <option value="AUTUMN">AUTUMN</option>
+                            </select>
+
+                            <label htmlFor="course">Course</label>
+                            <select className="form-control" name="course" id="courses" ref={courseInput}>
+                                {courses[selectedSchool].map((course) => {
+                                    return <option key={course.id} value={course.id}>{course.name + ' - ' + course.id}</option>;
                                 })}
                             </select>
-                            :
-                            <select className="form-control" id="schools" name="school" ref={schoolInput}>
-                                <option value={userCtx.user.school}>{userCtx.user.school}</option>
+
+                            <label htmlFor="professor">Professor</label>
+                            <input className="form-control" name="professor" id="professor" ref={profInput} />
+
+                            <label htmlFor="exam-date">Exam Date</label>
+                            <input className="form-control" type="datetime-local" name="exam_date" id="exam-date" ref={examDateInput} />
+
+                            <label htmlFor="participants-no">Number of Participants</label>
+                            <input className="form-control" type="number" name="participants_no" id="participants-no" ref={participantsInput} />
+
+                            <label htmlFor="pass-no">Number of Participants Passed</label>
+                            <input className="form-control" type="number" name="pass_no" id="pass-no" ref={passedInput} />
+
+                            <label htmlFor="grades-asset-url">Grades Asset</label>
+                            <input className="form-control" type="url" name="grades_asset_url" id="grades-asset-url" ref={gradesAssetInput} />
+
+                            <label htmlFor="update-status">Update Status</label>
+                            <select className="form-control" id="update_status" name="update_status" ref={updateStatusInput}>
+                                <option value="INITIAL STATE">INITIAL STATE</option>
+                                <option value="CORRECTIVE STATE">CORRECTIVE STATE</option>
                             </select>
-                        }
 
-                        <label htmlFor="period">Period</label>
-                        <select className="form-control" id="period" name="period" ref={periodInput}>
-                            <option value="WINTER">WINTER</option>
-                            <option value="SUMMER">SUMMER</option>
-                            <option value="AUTUMN">AUTUMN</option>
-                        </select>
+                            <label htmlFor="notes">Notes</label>
+                            <textarea className="form-control" name="notes" id="notes" ref={notesInput}></textarea>
 
-                        <label htmlFor="course">Course</label>
-                        <select className="form-control" name="course" id="courses" ref={courseInput}>
-                            {courses[selectedSchool].map((course) => {
-                                return <option key={course.id} value={course.id}>{course.name + ' - ' + course.id}</option>;
-                            })}
-                        </select>
+                            <label>Grades File (.bau)</label>
+                            <div>
+                                <FileImport setFileContent={setFileContent} />
+                            </div>
 
-                        <label htmlFor="professor">Professor</label>
-                        <input className="form-control" name="professor" id="professor" ref={profInput} />
-
-                        <label htmlFor="exam-date">Exam Date</label>
-                        <input className="form-control" type="datetime-local" name="exam_date" id="exam-date" ref={examDateInput} />
-
-                        <label htmlFor="participants-no">Number of Participants</label>
-                        <input className="form-control" type="number" name="participants_no" id="participants-no" ref={participantsInput} />
-
-                        <label htmlFor="pass-no">Number of Participants Passed</label>
-                        <input className="form-control" type="number" name="pass_no" id="pass-no" ref={passedInput} />
-
-                        <label htmlFor="grades-asset-url">Grades Asset</label>
-                        <input className="form-control" type="url" name="grades_asset_url" id="grades-asset-url" ref={gradesAssetInput} />
-
-                        <label htmlFor="update-status">Update Status</label>
-                        <select className="form-control" id="update_status" name="update_status" ref={updateStatusInput}>
-                            <option value="INITIAL STATE">INITIAL STATE</option>
-                            <option value="CORRECTIVE STATE">CORRECTIVE STATE</option>
-                        </select>
-
-                        <label htmlFor="notes">Notes</label>
-                        <textarea className="form-control" name="notes" id="notes" ref={notesInput}></textarea>
-
-                        <label>Grades File (.bau)</label>
-                        <div>
-                            <FileImport setFileContent={setFileContent} />
-                        </div>
-
-                        <div className={styles["btn-container"]}>
-                            <button className={`btn btn-primary ${styles["storeGrades"]}`}>Save</button>
-                        </div>
-                    </form>
+                            <div className={styles["btn-container"]}>
+                                <button className={`btn btn-primary ${styles["storeGrades"]} ${styles.shadow}`}>Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

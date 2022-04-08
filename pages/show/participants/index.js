@@ -4,6 +4,7 @@ import styles from './Participants.module.css';
 import WithAuth from "../../../components/WithAuth/WithAuth";
 import Router from "next/router";
 import toast from "react-hot-toast";
+import Head from 'next/head';
 
 function ShowParticipantsPage() {
 
@@ -39,40 +40,47 @@ function ShowParticipantsPage() {
     }, [loading]);
 
     return (
-        <div className="container">
-            <div className={`row ${styles['row-margin']}`}>
-                <div className="col-md-12">
-                    <div className={`card ${styles['card-container']}`}>
-                        <div className={`card-body ${styles['card-center']}`}>
-                            <div className="table-responsive">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Wallet</th>
-                                            <th>Has Access</th>
-                                            <th>Master Node</th>
-                                            <th>School</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {participants.map(participant => {
-                                            return (
-                                            <tr key={participant.wallet}>
-                                                <td>{participant.wallet}</td>
-                                                <td>{participant.hasAccess ? 'Yes' : 'No'}</td>
-                                                <td>{participant.isMaster ? 'Yes' : 'No'}</td>
-                                                <td>{participant.school}</td>
+        <>
+            <Head>
+                <title>Show Participants Page</title>
+                <meta property="og:title" key="title" />
+            </Head>
+
+            <div className="container">
+                <div className={`row ${styles['row-margin']}`}>
+                    <div className="col-md-12">
+                        <div className={`card ${styles['card-container']} ${styles.shadow}`}>
+                            <div className={`card-body ${styles['card-center']}`}>
+                                <div className="table-responsive">
+                                    <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Wallet</th>
+                                                <th>Has Access</th>
+                                                <th>Master Node</th>
+                                                <th>School</th>
                                             </tr>
-                                            )
-                                        })}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            {participants.map(participant => {
+                                                return (
+                                                <tr key={participant.wallet}>
+                                                    <td>{participant.wallet}</td>
+                                                    <td>{participant.hasAccess ? 'Yes' : 'No'}</td>
+                                                    <td>{participant.isMaster ? 'Yes' : 'No'}</td>
+                                                    <td>{participant.school}</td>
+                                                </tr>
+                                                )
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

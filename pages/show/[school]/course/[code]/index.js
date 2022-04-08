@@ -5,6 +5,7 @@ import styles from './CourseByID.module.css';
 import Router from "next/router";
 import WithAuth from "../../../../../components/WithAuth/WithAuth";
 import toast from "react-hot-toast";
+import Head from 'next/head';
 const moment = require('moment');
 
 function ShowCourseDetails() {
@@ -52,48 +53,53 @@ function ShowCourseDetails() {
 
     return (
         <>
-        <h2 className={styles['title-center']}>{school + ' - Course ID: ' + code}</h2>
-        <div className={`container ${styles.spacer}`}>
-            {Object.entries(coursesData)
-                .map(([key, value]) => {
-                    return (
-                        <div key={key} style={{ marginTop: 1 + 'rem' }}>
-                            <Accordion title={key}  courseInfo={JSON.stringify(value[value.length - 1])} content={
-                                <div className="table-responsive">
-                                    <table className="table">
-                                        <thead>
-                                            <tr>
-                                                <th># Participants</th>
-                                                <th># Participants Passed</th>
-                                                <th>Professor</th>
-                                                {/* <th>Grades Asset URL</th> */}
-                                                {/* <th>Grades Asset Hash</th> */}
-                                                <th>Status</th>
-                                                <th>Notes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        {value.map((course, idx) => {
-                                            return (
-                                            <tr key={idx}>
-                                                <td>{course.participants_number}</td>
-                                                <td>{course.pass_number}</td>
-                                                <td>{course.professor}</td>
-                                                {/* <td>{course.grades_asset_url}</td> */}
-                                                {/* <td>{course.grades_asset_hash}</td> */}
-                                                <td>{course.update_status}</td>
-                                                <td>{course.notes}</td>
-                                            </tr>
-                                            )
-                                        })}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            } />
-                        </div>
-                    );
-                })}
-        </div>
+            <Head>
+                <title>Show Course Info Page</title>
+                <meta property="og:title" key="title" />
+            </Head>
+
+            <h2 className={styles['title-center']}>{school + ' - Course ID: ' + code}</h2>
+            <div className={`container ${styles.spacer}`}>
+                {Object.entries(coursesData)
+                    .map(([key, value]) => {
+                        return (
+                            <div key={key} style={{ marginTop: 1 + 'rem' }}>
+                                <Accordion title={key}  courseInfo={JSON.stringify(value[value.length - 1])} content={
+                                    <div className="table-responsive">
+                                        <table className="table">
+                                            <thead>
+                                                <tr>
+                                                    <th># Participants</th>
+                                                    <th># Participants Passed</th>
+                                                    <th>Professor</th>
+                                                    {/* <th>Grades Asset URL</th> */}
+                                                    {/* <th>Grades Asset Hash</th> */}
+                                                    <th>Status</th>
+                                                    <th>Notes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {value.map((course, idx) => {
+                                                return (
+                                                <tr key={idx}>
+                                                    <td>{course.participants_number}</td>
+                                                    <td>{course.pass_number}</td>
+                                                    <td>{course.professor}</td>
+                                                    {/* <td>{course.grades_asset_url}</td> */}
+                                                    {/* <td>{course.grades_asset_hash}</td> */}
+                                                    <td>{course.update_status}</td>
+                                                    <td>{course.notes}</td>
+                                                </tr>
+                                                )
+                                            })}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                } />
+                            </div>
+                        );
+                    })}
+            </div>
         </>
     );
 }

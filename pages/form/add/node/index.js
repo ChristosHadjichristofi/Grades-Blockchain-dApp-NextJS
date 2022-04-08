@@ -5,6 +5,7 @@ import { useContext, useRef } from 'react';
 import Router from 'next/router';
 import WithAuth from "../../../../components/WithAuth/WithAuth";
 import toast from "react-hot-toast";
+import Head from 'next/head';
 
 function AddNodeFormPage() {
 
@@ -55,38 +56,45 @@ function AddNodeFormPage() {
     }
 
     return (
-        <div>
-            <div className={`container ${styles["container-form"]}`}>
-                <div className="card">
-                    <div className="card-body">
-                        <h6 className="text-muted card-subtitle mb-2">Complete the following form</h6>
+        <>
+            <Head>
+                <title>Add Participant Page</title>
+                <meta property="og:title" key="title" />
+            </Head>
 
-                        <form onSubmit={submitHandler}>
-                            <label htmlFor="wallet">Node Wallet</label>
-                            <input className="form-control" type="text" name="wallet" id="wallet" ref={walletInput} />
+            <div>
+                <div className={`container ${styles["container-form"]}`}>
+                    <div className={`card ${styles.shadow}`}>
+                        <div className="card-body">
+                            <h6 className="text-muted card-subtitle mb-2">Complete the following form</h6>
 
-                            <label htmlFor="schools">School</label>
-                            <select className="form-control" id="schools" name="school" ref={schoolInput}>
-                                {schools.map((school) => {
-                                    return <option key={school} value={school}>{school}</option>;
-                                })}
-                            </select>
+                            <form onSubmit={submitHandler}>
+                                <label htmlFor="wallet">Node Wallet</label>
+                                <input className="form-control" type="text" name="wallet" id="wallet" ref={walletInput} />
 
-                            <label htmlFor="master">Master Node</label>
-                            <select className="form-control" id="master" name="master" ref={isMasterInput}>
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>
-                            </select>
+                                <label htmlFor="schools">School</label>
+                                <select className="form-control" id="schools" name="school" ref={schoolInput}>
+                                    {schools.map((school) => {
+                                        return <option key={school} value={school}>{school}</option>;
+                                    })}
+                                </select>
+
+                                <label htmlFor="master">Master Node</label>
+                                <select className="form-control" id="master" name="master" ref={isMasterInput}>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
 
 
-                            <div className={styles["btn-container"]}>
-                                <button className={`btn btn-primary ${styles["btn-space"]}`}>Save</button>
-                            </div>
-                        </form>
+                                <div className={styles["btn-container"]}>
+                                    <button className={`btn btn-primary ${styles.shadow} ${styles["btn-space"]}`}>Save</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

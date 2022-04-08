@@ -15,3 +15,9 @@
 .center {
     text-align: center;
 }
+
+@media (max-width: 767.98px) {
+    .row-container {
+        margin-top: -40px;
+    }
+}

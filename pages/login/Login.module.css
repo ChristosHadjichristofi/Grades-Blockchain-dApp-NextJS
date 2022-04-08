@@ -1,0 +1,21 @@
+.top-margin {
+    margin-top: 8rem;
+}
+
+.shadow {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.padding {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.center {
+    text-align: center;
+}
+
+.metamask-icon {
+    max-width: 50px;
+    max-height: 50px;
+}

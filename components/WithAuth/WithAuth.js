@@ -8,9 +8,9 @@ export default function WithAuth(WrappedComponent) {
         if (typeof window !== "undefined") {
             const Router = useRouter();
 
-            if (!active && window.location.pathname !== '/') {
-                Router.replace("/");
+            if (!active && window.location.pathname !== '/' && window.location.pathname !== '/login') {
                 toast.error("Please login with MetaMask to continue!");
+                Router.replace("/");
                 return null;
             }
 

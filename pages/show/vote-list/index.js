@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import WithAuth from "../../../components/WithAuth/WithAuth";
 import Router from "next/router";
 import toast from "react-hot-toast";
+import Head from 'next/head';
 
 function ShowVoteListPage() {
 
@@ -41,7 +42,7 @@ function ShowVoteListPage() {
             contractsCtx.contracts["Grades"]
             .voteList()
             .then(voteListRetrieved => {
-                console.log(voteListRetrieved)
+
                 if (voteListRetrieved.length == 0) {
                     Router.replace("/menu");
                     toast("No information found!");
@@ -66,50 +67,57 @@ function ShowVoteListPage() {
     }, [loading]);
 
     return (
-        <div className="container">
-            <div className={`row ${styles['row-margin']}`}>
-                <div className="col-md-12">
-                    <div className={`card ${styles['card-container']}`}>
-                        <div className={`card-body ${styles['card-center']}`}>
-                            <div className="table-responsive">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Wallet</th>
-                                            <th># Accepted</th>
-                                            <th># Rejected</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {voteList.map(vote => {
-                                            return (
-                                            <tr key={vote.address}>
-                                                <td>{vote.address}</td>
-                                                <td>{vote.yes}</td>
-                                                <td>{vote.no}</td>
-                                                <td>
-                                                    <div className={`${styles.pointer} ${styles['green-color']}`} onClick={() => {voteYes(vote.address)}}>
-                                                        <FontAwesomeIcon icon={ faCheck }/>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className={`${styles.pointer} ${styles['red-color']}`} onClick={() => {voteNo(vote.address)}}>
-                                                        <FontAwesomeIcon icon={ faBan }/>
-                                                    </div>
-                                                </td>
+        <>
+            <Head>
+                <title>Show Vote-List Page</title>
+                <meta property="og:title" key="title" />
+            </Head>
+
+            <div className="container">
+                <div className={`row ${styles['row-margin']}`}>
+                    <div className="col-md-12">
+                        <div className={`card ${styles['card-container']} ${styles.shadow}`}>
+                            <div className={`card-body ${styles['card-center']}`}>
+                                <div className="table-responsive">
+                                    <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Wallet</th>
+                                                <th># Accepted</th>
+                                                <th># Rejected</th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            {voteList.map(vote => {
+                                                return (
+                                                <tr key={vote.address}>
+                                                    <td>{vote.address}</td>
+                                                    <td>{vote.yes}</td>
+                                                    <td>{vote.no}</td>
+                                                    <td>
+                                                        <div className={`${styles.pointer} ${styles['green-color']}`} onClick={() => {voteYes(vote.address)}}>
+                                                            <FontAwesomeIcon icon={ faCheck }/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className={`${styles.pointer} ${styles['red-color']}`} onClick={() => {voteNo(vote.address)}}>
+                                                            <FontAwesomeIcon icon={ faBan }/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
