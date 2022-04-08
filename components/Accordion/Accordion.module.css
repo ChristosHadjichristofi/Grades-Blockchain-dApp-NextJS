@@ -14,7 +14,8 @@
     justify-content: space-between;
 }
 
-.active, .accordion:hover {
+.active,
+.accordion:hover {
     background-color: rgba(107, 141, 228, 0.42);
 }
 
@@ -34,4 +35,8 @@
 
 .validate-btn {
     border-radius: 12px;
+}
+
+.shadow {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }

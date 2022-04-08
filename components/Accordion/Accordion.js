@@ -7,6 +7,8 @@ const Accordion = ({ title, content, courseInfo }) => {
     const [isActive, setIsActive] = useState(false);
     const [show, setShow] = useState(false);
     const [diff, setDiff] = useState("");
+    const [blockchainContent, setBlockchainContent] = useState("");
+    const [urlContent, setUrlContent] = useState("");
     const [modalTitle, setModalTitle] = useState("");
 
     const toggleDiffModal = () => setShow(!show);
@@ -42,6 +44,8 @@ const Accordion = ({ title, content, courseInfo }) => {
             if (!resData.error) toast.success("The file located at the URL has not been changed!");
             else {
                 setDiff(resData.diff);
+                setBlockchainContent(resData.blockchainContent);
+                setUrlContent(resData.urlContent);
                 setShow(true);
                 setModalTitle(`${course} ${belongs} ${school}`);
             }
@@ -56,10 +60,10 @@ const Accordion = ({ title, content, courseInfo }) => {
 
     return (
         <>
-            { diff && <DiffModal diff={diff} show={show} toggleDiffModal={toggleDiffModal} modalTitle={modalTitle}></DiffModal> }
-            <div className={`${styles['accordion']} ${isActive && styles.active}`} onClick={() => setIsActive(!isActive)}>
+            { diff && <DiffModal diff={diff} show={show} toggleDiffModal={toggleDiffModal} modalTitle={modalTitle} blockchainContent={blockchainContent} urlContent={urlContent}></DiffModal> }
+            <div className={`${styles['accordion']} ${styles.shadow} ${isActive && styles.active}`} onClick={() => setIsActive(!isActive)}>
                 <div className={styles['space-between']}>
-                    <button className={`btn btn-primary ${styles['validate-btn']}`} onClick={showDiff}>
+                    <button className={`btn btn-primary ${styles['validate-btn']} ${styles.shadow}`} onClick={showDiff}>
                         Validate
                     </button>
                     
