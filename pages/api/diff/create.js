@@ -1,14 +1,8 @@
 const Diff = require('diff');
 const Diff2html = require('diff2html');
-const fs = require('fs');
-const fs_extra = require('fs-extra');
 
 export default async function handler(req, res) {
     const { grades_asset_url, grades_asset_content_base64 } = req.body;
-
-    // Make sure that downloads folder exists
-    const downloadsDir = 'public/downloads/';
-    fs_extra.ensureDirSync(downloadsDir);
 
     const response = await fetch(grades_asset_url, { mode: 'no-cors' });
     const data = await response.text();
@@ -44,9 +38,9 @@ export default async function handler(req, res) {
 
     if (added.length == 0 && removed.length == 0) return res.status(200).json({ error: false });
     else {
-        fs.writeFileSync('public/downloads/file_from_blockchain.bau', grades_asset_content);
-        fs.writeFileSync('public/downloads/file_from_url.bau', asset_url_content);
-
-        return res.status(200).json({ error: true, diff: diffHtml });
+        let grades_asset_content_blob = [], asset_url_content_blob = [];
+        grades_asset_content_blob.push(grades_asset_content);
+        asset_url_content_blob.push(asset_url_content);
+        return res.status(200).json({ error: true, diff: diffHtml, blockchainContent: grades_asset_content_blob, urlContent: asset_url_content_blob });
     }
 }

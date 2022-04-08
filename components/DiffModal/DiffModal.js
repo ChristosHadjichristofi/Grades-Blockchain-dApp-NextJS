@@ -2,9 +2,9 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import styles from "./DiffModal.module.css";
-import { useState } from "react";
+import DownloadButton from '../DownloadButton/DownloadButton';
 
-function DiffModal({ diff, show, modalTitle, toggleDiffModal }) {
+function DiffModal({ diff, show, modalTitle, toggleDiffModal, blockchainContent, urlContent }) {
 
     return (
         <>
@@ -14,21 +14,17 @@ function DiffModal({ diff, show, modalTitle, toggleDiffModal }) {
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html-ui.min.js"></script>
         </div>
 
-        <Modal show={show} size="xl">
+        <Modal className={`${styles.shadow}`} show={show} size="xl">
             <Modal.Header>
                 <Modal.Title>{modalTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body><div dangerouslySetInnerHTML={{__html: diff}}/></Modal.Body>
             <Modal.Footer className={styles['space-between']}>
                 <div className={styles.gap}>
-                    <Button href="/downloads/file_from_blockchain.bau">
-                        Download File saved on Blockchain
-                    </Button>
-                    <Button href="/downloads/file_from_url.bau">
-                        Download File from URL
-                    </Button>
+                    <DownloadButton className={`${styles.shadow}`} name={"DL File from Blockchain"} filename={`BLOCKCHAIN_CONTENT_${modalTitle.replace('-','').replaceAll(' ', '_')}`} content={blockchainContent}></DownloadButton>
+                    <DownloadButton className={`${styles.shadow}`} name={"DL File from URL"} filename={`URL_CONTENT_${modalTitle.replace('-','').replaceAll(' ', '_')}`} content={urlContent}></DownloadButton>
                 </div>
-                <Button variant="secondary" onClick={toggleDiffModal}>
+                <Button className={`${styles.shadow}`} variant="secondary" onClick={toggleDiffModal}>
                     Close
                 </Button>
             </Modal.Footer>
