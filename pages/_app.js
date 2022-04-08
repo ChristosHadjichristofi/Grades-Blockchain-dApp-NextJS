@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
+import Head from 'next/head';
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import { Toaster } from "react-hot-toast";
@@ -23,6 +24,10 @@ function App({ Component, pageProps }) {
     return (
     <div id="general-container">
         <Toaster/>
+
+        <Head>
+            <link rel="shortcut icon" href="/images/ntua_logo.png" />
+        </Head>
 
         <UserContextProvider>
             <ContractsContextProvider>
