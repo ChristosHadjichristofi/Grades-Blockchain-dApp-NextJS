@@ -62,7 +62,7 @@ function MenuPage() {
                         />
                         <Card
                             title="Vote List"
-                            details="List of all nodes that applied to be a part of the network. Each participant can vote"
+                            details="List of all users that applied to be a part of the network. Each participant can vote"
                             route="/show/vote-list"
                         />
                     </div>
@@ -85,13 +85,13 @@ function MenuPage() {
                 <div className={`container ${styles["row-container"]}`}>
                     <div className={`row ${styles["row-margin"]}`}>
                         <Card
-                            title="Add Node"
-                            details="Give access to a new node. You must be a master node to be able to add a new node"
-                            route="/form/add/node"
+                            title="Add User"
+                            details="Give access to a new user. You must be a master user to be able to add a new user"
+                            route="/form/add/user"
                         />
                         <Card
                             title="Show Participants"
-                            details="See all participant nodes. Only a master node is able to see the regarding information"
+                            details="See all participant users. Only a master user is able to see the regarding information"
                             route="/show/participants"
                         />
                     </div>

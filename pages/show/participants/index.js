@@ -57,8 +57,8 @@ function ShowParticipantsPage() {
                                             <tr>
                                                 <th>Wallet</th>
                                                 <th>Has Access</th>
-                                                <th>Master Node</th>
-                                                <th>School</th>
+                                                <th>Master User</th>
+                                                <th>Belongs</th>
                                             </tr>
                                         </thead>
                                         <tbody>

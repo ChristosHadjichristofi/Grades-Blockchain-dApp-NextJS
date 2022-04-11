@@ -1,5 +1,5 @@
 import { schools } from "../../../../constants/schools-info";
-import styles from './NodeForm.module.css';
+import styles from './UserForm.module.css';
 import ContractsContext from "../../../../store/contract-context";
 import { useContext, useRef } from 'react';
 import Router from 'next/router';
@@ -7,7 +7,7 @@ import WithAuth from "../../../../components/WithAuth/WithAuth";
 import toast from "react-hot-toast";
 import Head from 'next/head';
 
-function AddNodeFormPage() {
+function AddUserFormPage() {
 
     const contractsCtx = useContext(ContractsContext);
 
@@ -22,7 +22,7 @@ function AddNodeFormPage() {
         const school = schoolInput.current.value;
         const isMaster = isMasterInput.current.value == 'Yes' ? true : false;
 
-        const validationEndPoint = '/api/form/node/validation';
+        const validationEndPoint = '/api/form/user/validation';
         const options = {
             method: 'POST',
             headers: {
@@ -52,7 +52,7 @@ function AddNodeFormPage() {
             }
 
         })
-        .then(() => Router.push('/form/add/node'));
+        .then(() => Router.push('/form/add/user'));
     }
 
     return (
@@ -69,7 +69,7 @@ function AddNodeFormPage() {
                             <h6 className="text-muted card-subtitle mb-2">Complete the following form</h6>
 
                             <form onSubmit={submitHandler}>
-                                <label htmlFor="wallet">Node Wallet</label>
+                                <label htmlFor="wallet">User's Wallet</label>
                                 <input className="form-control" type="text" name="wallet" id="wallet" ref={walletInput} />
 
                                 <label htmlFor="schools">School</label>
@@ -79,7 +79,7 @@ function AddNodeFormPage() {
                                     })}
                                 </select>
 
-                                <label htmlFor="master">Master Node</label>
+                                <label htmlFor="master">Master User</label>
                                 <select className="form-control" id="master" name="master" ref={isMasterInput}>
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
@@ -98,4 +98,4 @@ function AddNodeFormPage() {
     );
 }
 
-export default WithAuth(AddNodeFormPage);
+export default WithAuth(AddUserFormPage);
