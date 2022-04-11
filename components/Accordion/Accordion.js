@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import DiffModal from '../DiffModal/DiffModal';
 import styles from "./Accordion.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const Accordion = ({ title, content, courseInfo }) => {
     const [isActive, setIsActive] = useState(false);
@@ -68,7 +70,7 @@ const Accordion = ({ title, content, courseInfo }) => {
                     </button>
                     
                     <div>{title}</div>
-                    <div>{isActive ? '-' : '+'}</div>
+                    <div>{!isActive ? <FontAwesomeIcon icon={ faChevronDown } /> : <FontAwesomeIcon icon={ faChevronUp }/>}</div>
                 </div>
             </div>
             {isActive && <div className={styles['accordion-content']}>{content}</div>}
