@@ -64,11 +64,11 @@ module.exports = {
       "inputs": [
         {
           "internalType": "address",
-          "name": "node",
+          "name": "user",
           "type": "address"
         }
       ],
-      "name": "retrieveNodePermissions",
+      "name": "retrieveUserPermissions",
       "outputs": [
         {
           "components": [
@@ -93,7 +93,7 @@ module.exports = {
               "type": "address"
             }
           ],
-          "internalType": "struct Grades.NodePermissions",
+          "internalType": "struct Grades.UserPermissions",
           "name": "",
           "type": "tuple"
         }
@@ -129,7 +129,7 @@ module.exports = {
               "type": "address"
             }
           ],
-          "internalType": "struct Grades.NodePermissions[]",
+          "internalType": "struct Grades.UserPermissions[]",
           "name": "",
           "type": "tuple[]"
         }
@@ -142,7 +142,7 @@ module.exports = {
       "inputs": [
         {
           "internalType": "address",
-          "name": "node",
+          "name": "user",
           "type": "address"
         },
         {
@@ -156,7 +156,7 @@ module.exports = {
           "type": "bool"
         }
       ],
-      "name": "addNetworkNode",
+      "name": "addNetworkUser",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -165,7 +165,7 @@ module.exports = {
       "inputs": [
         {
           "internalType": "address",
-          "name": "node",
+          "name": "user",
           "type": "address"
         },
         {
@@ -187,7 +187,7 @@ module.exports = {
           "components": [
             {
               "internalType": "address",
-              "name": "node",
+              "name": "user",
               "type": "address"
             },
             {

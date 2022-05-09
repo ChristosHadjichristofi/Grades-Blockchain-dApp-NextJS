@@ -27,7 +27,7 @@ function MenuPage() {
             const contractAddress = contracts["Grades"];
             const contract = new ethers.Contract(contractAddress, abi, signer);
             contractsCtx.addContract("Grades", contract);
-            contract.retrieveNodePermissions(account)
+            contract.retrieveUserPermissions(account)
             .then(u => {
                 setUser(u);
                 userCtx.addUser(u);

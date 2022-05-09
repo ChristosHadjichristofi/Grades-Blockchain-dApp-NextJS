@@ -50,7 +50,7 @@ function ShowVoteListPage() {
 
                 for (const l of voteListRetrieved) {
                     voteList.push({ 
-                        address: l.node, 
+                        address: l.user, 
                         yes: BigNumber.from(l.yes).toNumber(), 
                         no: BigNumber.from(l.no).toNumber() 
                     });

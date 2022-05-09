@@ -38,7 +38,7 @@ function AddUserFormPage() {
             if (resData.error) toast.error(resData.msg);
             else {
                 contractsCtx.contracts["Grades"]
-                .addNetworkNode(
+                .addNetworkUser(
                     wallet,
                     school,
                     isMaster
