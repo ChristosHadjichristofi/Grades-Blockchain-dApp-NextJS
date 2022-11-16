@@ -1,5 +1,15 @@
 # Grades-Blockchain-dApp-NextJS
-A dApp that manages Grades of a University through a private Ethereum network. This implementation is more product like which uses MetaMask to connect and then to interract with the smart contracts
+
+
+<p align="center">
+  <b>A dApp that manages Grades of a University through a private Ethereum network. This implementation is more product like which uses MetaMask to connect and then to interract with the smart contracts.</b> </br>
+  <img alt="Byte Code Size" src="https://img.shields.io/github/languages/code-size/ChristosHadjichristofi/Grades-Blockchain-dApp-NextJS?color=red" />
+	<img alt="# Lines of Code" src="https://img.shields.io/tokei/lines/github/ChristosHadjichristofi/Grades-Blockchain-dApp-NextJS?color=red" />
+	<img alt="# Languages Used" src="https://img.shields.io/github/languages/count/ChristosHadjichristofi/Grades-Blockchain-dApp-NextJS?color=yellow" />
+	<img alt="Top language" src="https://img.shields.io/github/languages/top/ChristosHadjichristofi/Grades-Blockchain-dApp-NextJS?color=yellow" />
+	<img alt="Last commit" src="https://img.shields.io/github/last-commit/ChristosHadjichristofi/Grades-Blockchain-dApp-NextJS?color=important" />
+</p>
+
 
 ## Technologies Used
 * NextJS
